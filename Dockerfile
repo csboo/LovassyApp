@@ -2,13 +2,21 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS sdk
 WORKDIR /src
 
-# Copy solution & project files
-COPY LovassyApp.sln ./
-COPY Blueboard/Blueboard.csproj Blueboard/
+# Copy solution, helpers & project files
+COPY ./LovassyApp.sln ./
+COPY ./Blueboard/Blueboard.csproj Blueboard/
+COPY ./Helpers.WebApi/Helpers.WebApi.csproj Helpers.WebApi/
+COPY ./Helpers.Cryptography/Helpers.Cryptography.csproj Helpers.Cryptography/
+COPY ./Helpers.Cryptography.Tests/Helpers.Cryptography.Tests.csproj Helpers.Cryptography.Tests/
+COPY ./Helpers.Email/Helpers.Email.csproj Helpers.Email/
 
-# Copy all source
-COPY . .
 RUN dotnet restore
+
+# Copy source code
+COPY ./Blueboard Blueboard/
+COPY ./Helpers.WebApi Helpers.WebApi/
+COPY ./Helpers.Cryptography Helpers.Cryptography/
+COPY ./Helpers.Email Helpers.Email/
 
 # ===== Build / Publish stage =====
 FROM sdk AS build
