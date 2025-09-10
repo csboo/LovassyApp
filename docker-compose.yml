@@ -40,7 +40,7 @@ services:
     restart: unless-stopped
 
   db:
-    image: postgres:16
+    image: postgres:17-alpine
     container_name: blueboard-db
     restart: unless-stopped
     environment:
