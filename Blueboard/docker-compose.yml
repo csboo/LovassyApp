@@ -1,18 +1,18 @@
 services:
   builder:
     build:
-      context: .
+      context: ../
+      dockerfile: docker/Dockerfile.blueboard
       target: build # just build/publish
-    container_name: blueboard-builder
     volumes:
-      - ./Blueboard:/src/Blueboard
+      - .:/src/Blueboard
     command: ["echo", "Build complete"] # exits after build
 
   migrator:
     build:
-      context: .
+      context: ../
+      dockerfile: docker/Dockerfile.blueboard
       target: sdk # SDK image for EF CLI
-    container_name: blueboard-migrator
     depends_on:
       - db
     working_dir: /src/Blueboard
@@ -22,14 +22,14 @@ services:
     command: >
       /bin/sh -c "dotnet tool restore && dotnet ef database update"
     volumes:
-      - ./Blueboard:/src/Blueboard
+      - .:/src/Blueboard
     restart: "no"
 
   blueboard:
     build:
-      context: .
+      context: ../
+      dockerfile: docker/Dockerfile.blueboard
       target: final # runtime image
-    container_name: blueboard-backend
     depends_on:
       - db
     environment:
@@ -41,7 +41,6 @@ services:
 
   db:
     image: postgres:17-alpine
-    container_name: blueboard-db
     restart: unless-stopped
     environment:
       POSTGRES_USER: ${DB_USER}
