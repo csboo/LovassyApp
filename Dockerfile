@@ -8,11 +8,11 @@ COPY Blueboard/Blueboard.csproj Blueboard/
 
 # Copy all source
 COPY . .
+RUN dotnet restore
 
 # ===== Build / Publish stage =====
 FROM sdk AS build
 WORKDIR /src/Blueboard
-RUN dotnet restore
 RUN dotnet publish -c Release -o /app/publish
 
 # ===== Runtime stage =====
