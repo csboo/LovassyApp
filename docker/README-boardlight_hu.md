@@ -1,5 +1,7 @@
 # Boardlight – Docker beállítás
 
+[English readme](./README-boardlight_en.md)
+
 Szolgáltatás:
 
 - **boardlight** – futtatja a frontend-et automatikus újratöltéssel (hot reload)

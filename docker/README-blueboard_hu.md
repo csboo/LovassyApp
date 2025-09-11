@@ -1,5 +1,7 @@
 # Blueboard – Docker beállítás
 
+[English readme](./README-blueboard_en.md)
+
 Szolgáltatások:
 
 - **builder** – lefordítja az alkalmazást, majd kilép  
