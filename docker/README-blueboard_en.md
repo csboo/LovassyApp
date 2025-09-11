@@ -1,5 +1,7 @@
 # Blueboard – Docker Setup
 
+[Magyar readme](./README-blueboard_hu.md)
+
 services:
 
 - **builder** – builds and publishes the application, then exits  

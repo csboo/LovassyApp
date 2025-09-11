@@ -1,5 +1,7 @@
 # Boardlight – Docker Setup
 
+[Magyar readme](./README-blueboard_hu.md)
+
 Service:
 
 - **boardlight** – runs the frontend with hot reload
