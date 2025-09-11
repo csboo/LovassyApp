@@ -1,9 +1,10 @@
 services:
   boardlight:
     build:
-      dockerfile: docker/Dockerfile.boardlight
+      context: .
+      dockerfile: ../docker/Dockerfile.boardlight
     ports:
       - 80:80
     volumes:
-      - ./Boardlight:/app
+      - .:/app
       - /app/node_modules
