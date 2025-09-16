@@ -4,9 +4,7 @@
 
 services:
 
-- **builder** – builds and publishes the application, then exits  
-- **migrator** – runs Entity Framework Core migrations against the database  
-- **blueboard** – runs the backend in production mode  
+- **blueboard** – runs the backend, see '--help' for details
 - **db** – PostgreSQL database with persisted data
 
 ---
@@ -28,25 +26,15 @@ All sensitive values should be provided via a [`.env`](../Blueboard/.env.example
 
 ## Usage
 
-### 1. Start the database
+### Start Blueboard
 
 ```bash
-docker compose up -d db
+docker compose run --rm blueboard migrate
+docker compose up (-d)
 ```
 
-### 2. Build the app
+### Run commands to manage Blueboard
 
 ```bash
-docker compose run --rm builder
-```
-### 3. Run migrations
-
-```bash
-docker compose run --rm migrator
-```
-
-### 4. Run the app
-
-```bash
-docker compose up -d blueboard
+docker compose run --rm blueboard [COMMAND]
 ```

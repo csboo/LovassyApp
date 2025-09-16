@@ -4,9 +4,7 @@
 
 Szolgáltatások:
 
-- **builder** – lefordítja az alkalmazást, majd kilép  
-- **migrator** – lefuttatja az Entity Framework Core migrációkat az adatbázison  
-- **blueboard** – a backend futtatása production módban  
+- **blueboard** – futtatja a backend-et, lesd meg a '--help' további részletekért
 - **db** – PostgreSQL adatbázis perzisztens adattal
 
 ---
@@ -28,26 +26,15 @@ Minden fontos (nem publikus) értéket egy [`.env`](../Blueboard/.env.example) f
 
 ## Használat
 
-### 1. Adatbázis indítása
+### Indítsd el a Blueboard-ot
 
 ```bash
-docker compose up -d db
+docker compose run --rm blueboard migrate
+docker compose up (-d)
 ````
 
-### 2. Alkalmazás buildelése
+### Futtass parancsokat a Blueboard kezeléséhez
 
 ```bash
-docker compose run --rm builder
-```
-
-### 3. Migrációk futtatása
-
-```bash
-docker compose run --rm migrator
-```
-
-### 4. Alkalmazás futtatása
-
-```bash
-docker compose up -d blueboard
+docker compose run --rm blueboard [COMMAND]
 ```
