@@ -3,11 +3,23 @@ networks:
     name: blueboard-network
 
 services:
+## BOARDLIGHT
+  boardlight:
+    build:
+      context: Boardlight/
+      dockerfile: ../docker/Dockerfile.boardlight
+    ports:
+      - 80:80
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+## BLUEBOARD
   blueboard:
     networks:
       - blueboard-network
     build:
-      context: ../
+      context: ./
       dockerfile: docker/Dockerfile.blueboard
     depends_on:
       - db
