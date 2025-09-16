@@ -1,6 +1,6 @@
 # Blueboard – Docker Setup
 
-[Magyar readme](./README-blueboard_hu.md)
+[Magyar readme](./README-blueboard.hu.md)
 
 services:
 

@@ -1,6 +1,6 @@
 # Boardlight – Docker beállítás
 
-[English readme](./README-boardlight_en.md)
+[English readme](./README-boardlight.en.md)
 
 Szolgáltatás:
 

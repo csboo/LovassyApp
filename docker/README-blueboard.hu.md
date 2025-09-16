@@ -1,6 +1,6 @@
 # Blueboard – Docker beállítás
 
-[English readme](./README-blueboard_en.md)
+[English readme](./README-blueboard.en.md)
 
 Szolgáltatások:
 
