@@ -68,6 +68,11 @@ A Backboard futtatásához szükséges a [Node.js](https://nodejs.org/en/), a [R
 
 ### Futtatás dockerben
 
-#### Blueboard - *[dokumentáció](docker/README-blueboard_hu.md)*
-#### Boardlight - *[dokumentáció](docker/README-boardlight_hu.md)*
-#### Backboard - *[dokumentáció](docker/README-backboard_hu.md)*
+#### Blueboard - *[dokumentáció](docker/README-blueboard.hu.md)*
+#### Boardlight - *[dokumentáció](docker/README-boardlight.hu.md)*
+#### Backboard - *[dokumentáció](docker/README-backboard.hu.md)*
+
+Ha nincs kedved dokumentációt olvasni (azért nem árthat ha elolvasod :D), akkor csak szimplán:
+```bash
+docker compose up (-d)
+```
