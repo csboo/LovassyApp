@@ -4,7 +4,7 @@
 
 # Ignore Docker files themselves
 docker-compose*.yml
-docker/
+# docker/
 
 # Build output
 **/bin/
