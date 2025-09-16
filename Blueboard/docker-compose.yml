@@ -1,6 +1,11 @@
+networks:
+  blueboard-network:
+    name: blueboard-network
 
 services:
   blueboard:
+    networks:
+      - blueboard-network
     build:
       context: ../
       dockerfile: docker/Dockerfile.blueboard
@@ -12,8 +17,12 @@ services:
     ports:
       - "${BLUEBOARD_PORT}:8080"
     restart: unless-stopped
+    volumes:
+      - blueboard-data:/app
 
   db:
+    networks:
+      - blueboard-network
     image: postgres:17-alpine
     restart: unless-stopped
     environment:
@@ -27,3 +36,4 @@ services:
 
 volumes:
   db-data:
+  blueboard-data:
