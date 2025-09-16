@@ -1,35 +1,9 @@
+
 services:
-  builder:
-    build:
-      context: ../
-      dockerfile: docker/Dockerfile.blueboard
-      target: build # just build/publish
-    volumes:
-      - .:/src/Blueboard
-    command: ["echo", "Build complete"] # exits after build
-
-  migrator:
-    build:
-      context: ../
-      dockerfile: docker/Dockerfile.blueboard
-      target: sdk # SDK image for EF CLI
-    depends_on:
-      - db
-    working_dir: /src/Blueboard
-    environment:
-      ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
-      ConnectionStrings__DefaultConnection: ${DB_CONNECTION_STRING}
-    command: >
-      /bin/sh -c "dotnet tool restore && dotnet ef database update"
-    volumes:
-      - .:/src/Blueboard
-    restart: "no"
-
   blueboard:
     build:
       context: ../
       dockerfile: docker/Dockerfile.blueboard
-      target: final # runtime image
     depends_on:
       - db
     environment:
