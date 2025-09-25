@@ -9,12 +9,13 @@ This script is a control utility for the dockerized build of Blueboard
 Usage: $(basename "$0") [OPTIONS] [COMMAND]
 
 Commands:
-  migrate  run database migrations [aliases: m]
-  seed     seed the provided table in the database [aliases: s]
-  build    build Blueboard [aliases: b]
-  publish  publish Blueboard [aliases: p]
-  clean    Clean build outputs of Blueboard [aliases: c]
-  run      run Blueboard [aliases: r]
+  migrate            run database migrations [aliases: m]
+  seed               seed the provided table in the database [aliases: s]
+  import-key-create  create a new import key [aliases: ikc]
+  build              build Blueboard [aliases: b]
+  publish            publish Blueboard [aliases: p]
+  clean              Clean build outputs of Blueboard [aliases: c]
+  run                run Blueboard [aliases: r]
 
 Options:
   -h, --help  Show this help message and exit
@@ -30,11 +31,17 @@ migrate() {
 
 seed() {
   case "$1" in
-    users | u)
-      dotnet run -- seed:users
+    users | grade-imports | products | qrcodes)
+      run debug -- "seed:$1"
+      ;;
+    all)
+      run debug -- seed:users
+      run debug -- seed:grade-imports
+      run debug -- seed:products
+      run debug -- seed:qrcodes
       ;;
     *)
-      echo "please provide seed type ('users', 'grades', ...)"
+      echo "please provide seed type ('users', 'grade-imports', 'products', 'qrcodes' or 'all')"
       exit 1
       ;;
   esac
@@ -43,10 +50,12 @@ seed() {
 run() {
   case "$1" in
     release | r)
-      dotnet run -c Release
+      shift
+      dotnet run -c Release "$@"
       ;;
     debug | d)
-      dotnet run -c Debug
+      shift
+      dotnet run -c Debug "$@"
       ;;
     *)
       echo "please provide the configuration to run for('debug' or 'release')"
@@ -58,11 +67,13 @@ run() {
 build() {
   case "$1" in
     release | r)
-      dotnet build -c Release
+      shift
+      dotnet build -c Release "$@"
       echo "Release build complete"
       ;;
     debug | d)
-      dotnet build -c Debug
+      shift
+      dotnet build -c Debug "$@"
       echo "Debug build complete"
       ;;
     *)
@@ -75,16 +86,19 @@ build() {
 clean() {
   case "$1" in
     all | a)
-      dotnet clean -c Debug
-      dotnet clean -c Release
+      shift
+      dotnet clean -c Debug "$@"
+      dotnet clean -c Release "$@"
       echo "cleaning debug and release complete"
       ;;
     release | r)
-      dotnet clean -c Release
+      shift
+      dotnet clean -c Release "$@"
       echo "cleaning release complete"
       ;;
     debug | d)
-      dotnet clean -c Debug
+      shift
+      dotnet clean -c Debug "$@"
       echo "cleaning debug complete"
       ;;
     *)
@@ -114,6 +128,10 @@ fi
 case "$1" in
   migrate | m)
     migrate
+    ;;
+  import-key-create | ikc)
+    shift
+    run debug -- import-key:create "$1"
     ;;
   seed | s)
     shift
