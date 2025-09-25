@@ -36,6 +36,7 @@ export default defineConfig(({ mode }) => {
             host: true,
             proxy: {
                 '/Api': {
+                    // Change this to 'http://localhost:5279' if you wish to run locally
                     target: 'http://blueboard:5279',
                     changeOrigin: true,
                 },
