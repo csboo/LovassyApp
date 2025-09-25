@@ -33,6 +33,13 @@ export default defineConfig(({ mode }) => {
         },
 	    server: {
             port: 80,
+            host: true,
+            proxy: {
+                '/Api': {
+                    target: 'http://blueboard:5279',
+                    changeOrigin: true,
+                },
+            },
         },
     };
 });

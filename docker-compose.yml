@@ -5,6 +5,8 @@ networks:
 services:
 ## BOARDLIGHT
   boardlight:
+    networks:
+      - blueboard-network
     build:
       context: Boardlight/
       dockerfile: ../docker/Dockerfile.boardlight
@@ -25,9 +27,10 @@ services:
       - db
     environment:
       ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
+      ASPNETCORE_URLS: http://+:5279
       ConnectionStrings__DefaultConnection: ${DB_CONNECTION_STRING}
-    ports:
-      - "${BLUEBOARD_PORT}:8080"
+    # ports:
+      # - "${BLUEBOARD_PORT}:8080"
     restart: unless-stopped
     volumes:
       - blueboard-data:/app
