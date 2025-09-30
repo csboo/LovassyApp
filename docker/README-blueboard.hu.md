@@ -18,7 +18,8 @@ Szolgáltatások:
 
 ## Környezeti változók
 
-Minden fontos (nem publikus) értéket egy [`.env`](../Blueboard/.env.example) fájlba írj a [Blueboard](../Blueboard) mappában.
+Minden fontos (nem publikus) értéket egy `.env` fájlba írj a project gyökérkönyvtárába. ([ez egy jo kiindulási pont](../.env.example))
+> ⚠️ A `.env` fájl nélkül **nem tudod** futattni az appot.
 
 > ⚠️ A `.env` fájlt **soha ne commitold**.
 
@@ -36,5 +37,5 @@ docker compose up (-d)
 ### Futtass parancsokat a Blueboard kezeléséhez
 
 ```bash
-docker compose run --rm blueboard [COMMAND]
+docker compose run --rm blueboard --help
 ```

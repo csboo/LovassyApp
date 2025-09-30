@@ -15,13 +15,22 @@ Szolgáltatás:
 
 ---
 
+## Környezeti változók
+
+Néhány fontos (nem publikus), a Boardlight által használt értéket egy `.env` fájlban kell megadni, a [Boardlight mappában](../Boardlight). ([ez egy jo kiindulási pont](../Boardlight/.env.example))
+> ⚠️ A `.env` fájl nélkül **nem tudod** futattni az appot.
+
+> ⚠️ A `.env` fájlt **soha ne commitold**.
+
+---
+
 ## Használat
 
 ### 1. Az alkalmazás futtatása
 
 ```bash
-docker compose up
+docker compose up boardlight
 ```
 
-Ez felépíti az image-et, felcsatolja a forráskódot, és elindítja a Boardlight-ot a [http://localhost](http://localhost) címen.
+Ez felépíti az image-et, felcsatolja a forráskódot, és elindítja a Boardlight-ot a <http://localhost> címen.
 A kódban végzett módosítások automatikusan meg fognak jelenni.

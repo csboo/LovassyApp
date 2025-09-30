@@ -18,7 +18,8 @@ services:
 
 ## Environment Variables
 
-All sensitive values should be provided via a [`.env`](../Blueboard/.env.example) file in the [Blueboard](../Blueboard) folder
+All sensitive values should be provided via a `.env` file in the root of the project. ([see this example](../.env.example))
+> ⚠️ Without a `.env` file one **can not** run the app.
 
 > ⚠️ **Do not commit** `.env` to version control.
 
@@ -36,5 +37,5 @@ docker compose up (-d)
 ### Run commands to manage Blueboard
 
 ```bash
-docker compose run --rm blueboard [COMMAND]
+docker compose run --rm blueboard --help
 ```
